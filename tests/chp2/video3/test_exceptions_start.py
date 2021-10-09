@@ -8,6 +8,10 @@ def test_make_one_point():
 
 
 def test_invalid_point_generation():
-    with pytest.raises(ValueError) as exp:
+    with pytest.raises(ValueError) as exp1:
         Point("Dhaka", 23.2356, -422.2323)
-    assert str(exp.value) == "Invalid latitude and longitude combination"
+    assert str(exp1.value) == "Invalid latitude and longitude combination"
+
+    with pytest.raises(ValueError) as exp:
+        Point(0, 23.2356, 22.2323)
+    assert str(exp.value) == "Invalid name type, expected string."
