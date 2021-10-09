@@ -1,3 +1,4 @@
+import pytest
 from scripts.chp2.video3.mapmaker_exceptions_start import Point
 
 
@@ -6,7 +7,7 @@ def test_make_one_point():
     assert p1.get_lat_long() == (14.7167, 17.4677)
 
 
-def test_invalid_point_generation():  # TO DO
-    # with pytest.raises(Exception) as exp:
-    #     raise(Exception)
-    pass
+def test_invalid_point_generation():
+    with pytest.raises(ValueError) as exp:
+        Point("Dhaka", 23.2356, -422.2323)
+    assert str(exp.value) == "Invalid latitude and longitude combination"
